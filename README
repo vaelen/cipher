@@ -1,0 +1,23 @@
+# Cipher - A Simple Caesar Cipher Encoder/Decoder
+
+This tool is used to encode and decode text using a simple Caesar cipher.
+
+On Linux, BSD, or other *nix variants you can build simply by running `make`.
+
+The code is written in ANSI C with the hope that it can also be used on 
+retrocomputers with only a few changes to `main.c`.
+
+The cipher only encodes and decodes captial letter from the English alphabet. 
+I realize this is highly limiting, but this is meant to be used for simple 
+messages, not for serious encryption.
+
+The current implementation limits the maximum size of the one-time pad to 4KiB 
+to save memory on older computers, but this would be an easy thing to change.
+
+This program is licensed under an MIT-style license, which included in the
+file named `LICENSE`. 
+
+You can reach the author in the following ways:
+       Email: andrew@vaelen.org
+      fsxNet: vaelen@21:1/141
+    Mastadon: vaelen@bitbang.social
