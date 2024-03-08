@@ -1,6 +1,11 @@
 #ifndef CIPHER_H
 #define CIPHER_H
 
+/*
+  Copyright 2024 Andrew C. Young
+  License: MIT
+ */
+
 /* 
  * Caesar Cipher w/ One Time Pad
  *

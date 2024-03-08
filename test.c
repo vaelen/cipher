@@ -1,3 +1,8 @@
+/*
+  Copyright 2024 Andrew C. Young
+  License: MIT
+ */
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -27,7 +32,7 @@ int main() {
   }
   
   cipher(encoded, decoded, key, 1);
-  printf("Decoded: %s\n", input);
+  printf("Decoded: %s\n", decoded);
 
   free(encoded);
   free(decoded);

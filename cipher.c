@@ -1,32 +1,30 @@
+/*
+  Copyright 2024 Andrew C. Young
+  License: MIT
+ */
 #include <string.h>
 #include "cipher.h"
 
-const char LCASE_START = 'a';
-const char LCASE_END   = 'z';
-const char UCASE_START = 'A';
-const char UCASE_END   = 'Z';
-const char UCASE_DIFF  = LCASE_START - UCASE_START;
-const char UCASE_SIZE  = UCASE_END - UCASE_START;
-
 int cipher(const char *in, char* out, const char* key, const int encode) {
-  int i, j, t = 0;
+  int i, j = 0;
   char c = in[i];
   char k = key[j];
+  char t = 0;
   
   while (c != 0) {
     /* Upper case */
-    if (c >= LCASE_START && c <= LCASE_END) {
-      c -= UCASE_DIFF;
+    if (c >= 'a' && c <= 'z') {
+      c -= 32;
     }
     
     /* Only convert characters */
-    if (c >= UCASE_START && c <= UCASE_END) {
+    if (c >= 'A' && c <= 'Z') {
       /* Check for next key value */
-      while (k < UCASE_START || k > UCASE_END) {
+      while (k < 'A' || k > 'Z') {
 	/* Invalid key */
-	if (k >= LCASE_START && k <= LCASE_END) {
+	if (k >= 'a' && k <= 'z') {
 	  /* Convert to upper case */
-	  k -= UCASE_DIFF;
+	  k -= 32;
 	} else {
 	  if (k == 0) {
 	    /* End of key, wrap */
@@ -38,14 +36,20 @@ int cipher(const char *in, char* out, const char* key, const int encode) {
 	}
       }
 
+      k -= 'A';
+      
       /* Convert character */
-      if (encode != 0) {
+      if (encode) {
 	t = c + k;
       } else {
 	t = c - k;
       }
-      t = (t % UCASE_SIZE) + UCASE_START;
-      c = (char)t;
+      if (t > 'Z') {
+	t -= 26;
+      } else if (t < 'A') {
+	t += 26;
+      }
+      c = t;
     }
 
     /* Output character */
